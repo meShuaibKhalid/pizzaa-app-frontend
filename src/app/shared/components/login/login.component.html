@@ -1,0 +1,40 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <span>Order your Pizza</span>
+
+      <div class="nav-items">
+        <span class="mx-2 fw-normal fs-6"
+          style="cursor: pointer;" [routerLink]="['']"> Login</span>
+          <span class="mx-2 fw-normal fs-6"
+          style="cursor: pointer;" [routerLink]="['/register']"> Register</span>
+      </div>
+    </div>
+
+  </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="container d-flex justify-content-center align-items-center mt-5 px-3">
+    <mat-card class="mt-5 ">
+      <mat-card-content>
+        <form [formGroup]="loginForm">
+          <h2>Log In</h2>
+          <mat-error *ngIf="!loginValid">
+            The username and password were not recognized
+          </mat-error>
+          <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email">
+            <mat-error>
+              Please provide a valid email address
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="password" placeholder="Password" formControlName="password">
+            <mat-error>
+              Please provide a valid password
+            </mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="onSubmit()">Login</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>

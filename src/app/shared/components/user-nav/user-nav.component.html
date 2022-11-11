@@ -1,0 +1,24 @@
+<mat-toolbar>
+  <div class="container custom-toolbar">
+    <span>Pizza App</span>
+    <span class="example-spacer"></span>
+    <div class="nav-items custom-toolbar">
+        <!-- <mat-form-field appearance="outline">
+          <mat-label>Search Pizza </mat-label>
+          <input matInput placeholder="Search Pizza Items" #search (keyup)="searchItems(search.value)">
+        </mat-form-field> -->
+        <div class="input-wrapper">
+          <input type="search" name="search" #search (search)="searchItems(search.value)" (keyup)="searchItems(search.value)">
+          <img src="assets/images/search.svg" alt="">
+        </div>
+      <span *ngFor="let item of navigationItems" [routerLink]="[item.path]" class="mx-2 fw-normal fs-6"
+        style="cursor: pointer;"> {{item.title}} </span>
+      <button mat-icon-button class="d-flex" aria-label="Example icon-button with heart icon">
+        <mat-icon [routerLink]="['/user/cart']">shopping_cart</mat-icon>
+        <span class="cartItems" *ngIf="cartItems?.length">{{cartItemQuantity}}</span>
+      </button>
+      <button color="accent" mat-raised-button class="ms-4" (click)="logout()">Logout</button>
+
+    </div>
+  </div>
+</mat-toolbar>

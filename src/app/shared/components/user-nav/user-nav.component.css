@@ -1,0 +1,31 @@
+.custom-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cartItems{
+  background: #cecece;
+  color: #000;
+  padding: 3px;
+  border-radius: 50%;
+  height: max-content !important;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 16px;
+  padding-inline: 10px;
+
+}
+.input-wrapper > input[type="search"] {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+.input-wrapper > img {
+  height: 20px;
+  width: 20px;
+}

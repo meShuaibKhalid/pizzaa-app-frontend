@@ -1,0 +1,77 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 class="mb-0">Menu</h1>
+    <button mat-raised-button color="accent" [routerLink]="['/admin/dashboard/add-menu']">Add new Menu</button>
+  </div>
+  <div class="mt-5">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>
+          Product Id
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef sortActionDescription="Sort by name">
+          Name
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by weight">
+          Price
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} INR</td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by symbol">
+          Quantity
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="availability">
+        <th mat-header-cell *matHeaderCellDef sortActionDescription="Sort by symbol">
+          Availability
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.availability ? 'Unavailable' : 'Available'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef sortActionDescription="Sort by symbol">
+          Category
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef sortActionDescription="Sort by symbol" class="text-center">
+          Actions
+        </th>
+        <td mat-cell *matCellDef="let row" class="text-center">
+          <mat-icon class="text-center text-primary" (click)="editMenu(row)">edit</mat-icon>
+          <mat-icon class="text-center text-danger" (click)="deleteMenu(row)">delete</mat-icon>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+
+    <div class="mt-5" *ngIf="!dataSource">
+      <h1 class="fs-1 text-center ">No Item Found</h1>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-center">
+      <button mat-raised-button color="accent" (click)="back()" class="mx-2 px-2 py-1" style="width: 150px ;" [disabled]="currentPage == 1"><mat-icon>arrow_back_ios_new</mat-icon>Previous</button>
+      <button mat-raised-button color="accent" (click)="next()" class="mx-2 px-2 py-1" style="width: 150px ;" [disabled]="currentPage >= totalPages">Next<mat-icon>arrow_forward_ios_new</mat-icon></button>
+    </div>
+
+  </div>
+</div>

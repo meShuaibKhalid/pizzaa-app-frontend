@@ -1,0 +1,52 @@
+<div class="container mt-5">
+  <h1>{{!pizza_id ? "Add New Menu" : "Update Menu"}}</h1>
+
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="menuForm">
+        <h2>Menu Items</h2>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Name" formControlName="name">
+          <mat-error>
+            Please provide pizza name
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Quantity" formControlName="quantity" type="number">
+          <mat-error>
+            Please provide quantity
+          </mat-error>
+        </mat-form-field>
+        <div class="d-flex pb-2">
+          <mat-slide-toggle class="example-margin" color="accent" formControlName="available">
+            Available
+          </mat-slide-toggle>
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Choose Category</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let item of pizzaCategory" [value]="item.value">{{item.label}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder="Add Price" formControlName="price" type="number">
+          <mat-error>
+            Please provide price
+          </mat-error>
+        </mat-form-field>
+        <div class="d-flex">
+          <button type="button" class="me-3" mat-raised-button (click)="fileInput.click()">{{imageControl.value ? (fileName.length ? fileName : "Image.jpg") : 'Choose Image'}}</button>
+          <button type="button" mat-raised-button *ngIf="imageControl.value" (click)="deleteImage()">Delete</button>
+
+          <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file" accept="image/*">
+        </div>
+        <div style="width: 22rem; margin-block: 20px;">
+          <img *ngIf="imageControl.value" src={{imageControl.value}} alt="" width="100%">
+        </div>
+        <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="menuForm.invalid">{{pizza_id ? 'Update' : 'Add'}}</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+</div>
